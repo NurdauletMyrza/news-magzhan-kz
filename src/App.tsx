@@ -1,26 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+// src/App.tsx
+import React, { useState } from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import NewsList from "./pages/NewsList";
+import NewsDetail from "./pages/NewsDetail";
 
-function App() {
+const App: React.FC = () => {
+  const [selectedTag, setSelectedTag] = useState<string>("");
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Header selectedTag={selectedTag} setSelectedTag={setSelectedTag} />
+      <main>
+        <Routes>
+          <Route path="/" element={<NewsList />} />
+          <Route path="/search/:searchValue" element={<NewsList />} />
+          <Route path="/tag/:tagValue" element={<NewsList />} />
+          <Route path="/news/:id" element={<NewsDetail />} />
+        </Routes>
+      </main>
+      <Footer selectedTag={selectedTag} setSelectedTag={setSelectedTag} />
+    </Router>
   );
-}
+};
 
 export default App;
