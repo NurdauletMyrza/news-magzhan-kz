@@ -1,7 +1,6 @@
-// src/components/Card.tsx
 import React from "react";
 import { Link } from "react-router-dom";
-import { UpdatedPost } from "../types";
+// import { UpdatedPost } from "../types";
 
 interface CardProps {
   id: number;

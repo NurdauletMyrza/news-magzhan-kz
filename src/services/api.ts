@@ -1,4 +1,3 @@
-// src/services/api.ts
 import axios from "axios";
 import { UpdatedPost, Post, Comment, UpdatedComment, CardPost } from "../types";
 
@@ -19,6 +18,11 @@ export const getPostsBySearchTitle = () => {};
 export const getPostById = async (id: number): Promise<UpdatedPost> => {
   const response = await axios.get<Post>(`${API_URL}/posts/${id}`);
   return updatePost(response.data);
+};
+
+export const updatePostLikes = async (postId: number, likes: number): Promise<void> => {
+  await axios.patch(`${API_URL}/posts/${postId}`, { likes });
+  console.log("post likes updated");
 };
 
 export const getCommentsByPostId = async (postId: number): Promise<UpdatedComment[]> => {
@@ -53,10 +57,11 @@ function updatePost(post: Post): UpdatedPost {
   return {
     ...post,
     bodyContent: [
-      { imageLink: `../images/image_${number}_1.jpg` },
+      { imageLink: `/images/image_${number}_1.jpg` },
       ( post.body + post.body + post.body + post.body ),
       { specialText: (post.body + post.body)},
-      { imageLink: `../images/image_${number}_2.jpg` },      
+      ( post.body + post.body + post.body + post.body ),
+      { imageLink: `/images/image_${number}_2.jpg` },      
       ( post.body + post.body + post.body + post.body )
     ],
     tag: tags[number - 1],
@@ -68,7 +73,8 @@ function updatePost(post: Post): UpdatedPost {
 function updateComment(comment: Comment): UpdatedComment {
   return {
     ...comment,
-    date: getDate(comment)
+    date: getDate(comment),
+    avatarLink: "/icons/avatar.svg"
   };
 }
 

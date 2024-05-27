@@ -1,4 +1,3 @@
-// src/types.ts
 export interface Post {
   userId: number;
   id: number;
@@ -29,6 +28,7 @@ export interface Comment {
 
 export interface UpdatedComment extends Comment {
   date: Date;
+  avatarLink: string;
 }
 
 export interface TagProps {

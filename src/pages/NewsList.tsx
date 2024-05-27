@@ -1,9 +1,8 @@
-// src/pages/NewsList.tsx
 import React, { useState, useEffect } from "react";
 import { getPosts } from "../services/api";
 import Card from "../components/Card";
-import { CardPost, Post, TagProps, UpdatedPost } from "../types";
-import { useParams } from "react-router-dom";
+import { CardPost } from "../types";
+// import { useParams } from "react-router-dom";
 
 const NewsList: React.FC = () => {
   // const { tag } = useParams<{ searchValue: string }>();

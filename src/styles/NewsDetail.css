@@ -1,0 +1,256 @@
+.news-detail-page {
+  background-color: var(--white);
+}
+
+.news-detail {
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 5vw;
+  max-width: 676px;
+  box-sizing: content-box;
+}
+
+.news-detail__news {
+  margin-top: 32px;
+}
+
+.news {}
+
+.news__title {
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 122%;
+  color: var(--main);
+}
+
+.news__info {
+  margin-top: 24px;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.news__tag {}
+
+.news__date {}
+
+.news__image {
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+.news__special-text {
+  padding-top: 32px;
+  padding-bottom: 32px;
+  font-family: var(--font-family);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 167%;
+  color: var(--main);
+  border-top: 4px solid var(--bg);
+  border-bottom: 4px solid var(--bg);
+}
+
+.news__p-text {
+  margin-top: 48px;
+  margin-bottom: 48px;
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 178%;
+  color: var(--main);
+}
+
+.news-detail__social-actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.news-detail__social-actions:not(:last-child) {
+  margin-bottom: 88px;
+}
+
+.news-detail__button {
+  width: 326px;
+  background-color: var(--bg);
+}
+
+.button {
+  height: 64px;
+  border-radius: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease-in-out;
+
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 133%;
+  color: var(--main);
+}
+
+.like-button {
+  gap: 12px;
+}
+
+.liked-button {
+  background-color: #ff6d6d;
+  color: var(--white);
+}
+
+.share-button {
+  gap: 32px;
+}
+
+.button__icon {
+  width: 32px;
+  height: 32px;
+}
+
+.button__icon path {
+  fill: var(--main);
+  transition: all 0.3s ease-in-out;
+}
+
+.liked-button .button__icon path {
+  fill: var(--white);
+}
+
+.button:hover {
+  color: #ff6d6d;
+}
+
+.button:hover .button__icon path {
+  fill: #ff6d6d;
+}
+
+.liked-button:hover {
+  color: var(--main);
+}
+
+.liked-button:hover .button__icon path {
+  fill: var(--main);
+}
+
+.button:active {
+  background-color: #ff6d6d;
+  color: var(--white);
+}
+.button:active .button__icon path {
+  fill: var(--white);
+}
+@keyframes rotateIcon {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(15deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+.like-button:active .button__icon {
+  animation: rotateIcon 0.3s ease;
+}
+
+.news-detail__comments {}
+
+.comments {}
+
+.comments__header {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 160%;
+  color: var(--main);
+  margin-bottom: 32px;
+}
+
+.comments__list {}
+
+.comments__item {}
+
+.comments__item:not(:last-child) {
+  margin-bottom: 32px;
+}
+
+.comment {
+  display: flex;
+  justify-content: space-between;
+}
+
+.comment__left-side {}
+
+.comment__right-side {
+  width: 588px;
+  border-bottom: 2px solid #ccc;
+  padding-bottom: 16px;
+}
+
+.comment__avatar {
+  display: inline-block;
+  width: 64px;
+  height: 64px;
+  border-radius: 32px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.comment__header {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 178%;
+  color: var(--main);
+}
+
+.comment__header .comment__date {
+  font-size: 18px;
+  line-height: 178%;
+  color: #ccc;
+  margin-left: 32px;
+}
+
+.comment__text {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 178%;
+  color: rgba(23, 43, 77, 0.7);
+  margin-top: 13px;
+}
+
+.comment__actions {
+  display: none;
+  text-align: end;
+  margin-top: 18px;
+}
+
+.comment:hover .comment__actions {
+  display: block;
+}
+
+.comment__button {}
+
+.comment__button:not(:first-child) {
+  margin-left: 16px;
+}
+
+.edit-button {}
+
+.delete-button {}
+
+.comment__button-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.comment__button:hover .comment__button-icon path {
+  fill: #AA2424;
+}

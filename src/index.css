@@ -1,47 +1,99 @@
-/* src/index.css */
-body {
-  font-family: Arial, sans-serif;
+/* Обнуление стилей */
+
+/* Сброс отступов и отступов для всех элементов */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Для учета границ и отступов в размерах элементов */
 }
 
-header, footer {
-  background: #333;
-  color: white;
-  padding: 10px;
+/* Сброс стиля списка */
+ul,
+ol {
+    list-style: none;
 }
 
-header input {
-  margin-left: 10px;
+/* Сброс текстового оформления ссылок */
+a {
+    text-decoration: none;
+    color: inherit; /* Наследует цвет текста от родительского элемента */
 }
 
-.news-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+/* Сброс размеров шрифтов и типа шрифта */
+body,
+h1, h2, h3, h4, h5, h6,
+p,
+blockquote,
+pre,
+abbr,
+code,
+kbd,
+samp,
+small,
+strong,
+sub,
+sup,
+var,
+b,
+i,
+dl,
+dt,
+dd,
+figure,
+figcaption,
+fieldset,
+legend,
+button,
+input,
+textarea,
+optgroup,
+option,
+select {
+    font-size: 100%;
+    font-family: inherit;
 }
 
-.card {
-  background: white;
-  margin: 10px;
-  padding: 10px;
-  border: 1px solid #ddd;
-  width: 200px;
-  text-align: center;
+/* Устранение маргинов у заголовков */
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    font-weight: inherit;
 }
 
-.card-image {
-  height: 150px;
-  background-size: cover;
-  background-position: center;
+/* Устранение стиля курсива у <address> и <cite> */
+address, cite {
+    font-style: normal;
 }
 
-.news-detail {
-  margin: 20px;
+/* Сброс стилей для кнопок */
+button,
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+input[type="file"]::-webkit-file-upload-button,
+input[type="range"],
+input[type="checkbox"],
+input[type="radio"] {
+    appearance: button;
+    border: none;
+    background: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    outline: none;
 }
 
-button {
-  padding: 10px;
-  margin: 20px;
-  background: #333;
-  color: white;
-  border: none;
+/* Устранение маргинов у списков */
+ul,
+ol,
+li {
+    margin: 0;
+    padding: 0;
+}
+
+/* Сброс стилей для таблиц */
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
 }
