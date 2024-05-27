@@ -1,8 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { getTags } from "../services/api";
 import { TagProps } from "../types";
 import "../styles/Header.css";
+import ScrollToTopLink from "./ScrollToTopLink";
 
 
 const Header: React.FC<TagProps> = ({ selectedTag, setSelectedTag }) => {
@@ -13,17 +13,18 @@ const Header: React.FC<TagProps> = ({ selectedTag, setSelectedTag }) => {
       <nav className="header__navigation navigation _container">
         <div className="navigation__head">
           <span className="navigation__quote">Мен жастарға сенемін</span>
-          <span className="navigation__logo-link"><Link to="/news-magzhan-kz">Magzhan.kz</Link></span>
+          <span className="navigation__logo-link"><ScrollToTopLink to="/news-magzhan-kz">Magzhan.kz</ScrollToTopLink></span>
           <span className="navigation__author">Мағжан Жұмабаев</span>
         </div>
         <div className="navigation__menu">
           <ul className="navigation__tags">
             {tags.map((tag) => (
-              <Link key={`tag-${tag}`} to={`/news-magzhan-kz/tag/#${tag}`}>
+              // <ScrollToTopLink key={`tag-${tag}`} to={`/news-magzhan-kz/tag/#${tag}`}>
+              <ScrollToTopLink key={`tag-${tag}`} to={`/news-magzhan-kz/`}>
                 <li className="navigation__tag">
                   {tag}
                 </li>
-              </Link>
+              </ScrollToTopLink>
             ))}
           </ul>
           <div className="search-bar">

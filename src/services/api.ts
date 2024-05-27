@@ -31,6 +31,11 @@ export const updatePostLikes = async (postId: number, likes: number): Promise<vo
   console.log("post likes updated");
 };
 
+export const editComment = async (comment: UpdatedComment): Promise<void> => {
+  await axios.patch(`${API_URL}/comments/${comment.id}`, comment);
+  console.log("comment updated");
+};
+
 export const addComment = async (comment: UpdatedComment): Promise<void> => {
   await axios.post(`${API_URL}/comments`, comment);
   console.log("comment added");

@@ -41,6 +41,10 @@
   transition: all 0.3s ease-in-out;
 }
 
+*.footer__tag {
+  font-family: var(--font-family);
+}
+
 .footer__tag:hover {
   font-size: 18px;
 }

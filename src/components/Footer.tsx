@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { TagProps } from '../types';
 import { getTags } from '../services/api';
 import "../styles/Footer.css";
+import ScrollToTopLink from './ScrollToTopLink';
 
 const Footer: React.FC<TagProps> = ({ selectedTag, setSelectedTag }) => {
   const tags = getTags();
@@ -11,11 +12,12 @@ const Footer: React.FC<TagProps> = ({ selectedTag, setSelectedTag }) => {
     <footer className="footer ">
       <section className="footer__tags _container">
         {tags.map((tag) => (
-          <Link key={`tag2-${tag}`} to={`/news-magzhan-kz/tag/#${tag}`}>
+          // <ScrollToTopLink key={`tag2-${tag}`} to={`/news-magzhan-kz/tag/#${tag}`}>
+          <ScrollToTopLink key={`tag-${tag}`} to={`/news-magzhan-kz/`}>
             <span className="footer__tag">
               {tag}
             </span>
-          </Link>
+          </ScrollToTopLink>
         ))}
       </section>
       <section className="footer__contacts">

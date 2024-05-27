@@ -2,12 +2,10 @@ import React, { useState, useEffect } from "react";
 import { getPosts, getTotalPagesNumber } from "../services/api";
 import Card from "../components/Card";
 import { CardPost } from "../types";
-// import { useParams } from "react-router-dom";
 import "../styles/NewsList.css";
-import { Link } from "react-router-dom";
+import ScrollToTopLink from "../components/ScrollToTopLink";
 
 const NewsList: React.FC = () => {
-  // const { tag } = useParams<{ searchValue: string }>();
   const [posts, setPosts] = useState<CardPost[]>([]);
   const [page, setPage] = useState(1);
   const [pagesNumber, setPagesNumber] = useState(0);
@@ -37,9 +35,9 @@ const NewsList: React.FC = () => {
         <div className="news-list__first-two">
           {posts.slice(0, 2).map((post) => (
             <li key={`post-${post.id}`} className={`news-list__item-${post.styleVersion}`}>
-              <Link to={`/news-magzhan-kz/news/${post.id}`}>
+              <ScrollToTopLink to={`/news-magzhan-kz/news/${post.id}`}>
                 <Card title={post.title} tag={post.tag} date={post.date} imageLink={post.imageLink} styleVersion={post.styleVersion} />
-              </Link>
+              </ScrollToTopLink>
             </li>
           ))}
         </div>
@@ -48,20 +46,19 @@ const NewsList: React.FC = () => {
             if (index > 1) {
               return (
                 <li key={`post-${post.id}`} className="news-list__item">
-                  <Link to={`/news-magzhan-kz/news/${post.id}`}>
+                  <ScrollToTopLink to={`/news-magzhan-kz/news/${post.id}`}>
                     <Card title={post.title} tag={post.tag} date={post.date} imageLink={post.imageLink} styleVersion={post.styleVersion} />
-                  </Link>
+                  </ScrollToTopLink>
                 </li>
               );
             }
-            return (<></>);
+            return ;
           })}
         </div>
-        {/* <button onClick={() => setPage(page + 1)}>Load more</button> */}
       </ul>
       <div className="news-list__pages">
         {Array.from({ length: pagesNumber}).map((_, index) => (
-          <button className="news-list__pages-button" onClick={() => setPage(index + 1)}>{index + 1}</button>
+          <button key={`page-${index + 1}`} className={`news-list__pages-button ${page === index + 1 ? "color-red" : ""}`} onClick={() => { window.scrollTo(0, 0); setPage(index + 1) }}>{index + 1}</button>
         ))}
       </div>
     </div>
