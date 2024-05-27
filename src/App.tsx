@@ -18,6 +18,9 @@ const App: React.FC = () => {
           <Route path="/news-magzhan-kz/search/:searchValue" element={<NewsList />} />
           <Route path="/news-magzhan-kz/tag/:tagValue" element={<NewsList />} />
           <Route path="/news-magzhan-kz/news/:id" element={<NewsDetail />} />
+          <Route path="/search/:searchValue" element={<Navigate to="/news-magzhan-kz№search/:searchValue" />} />
+          <Route path="/tag/:tagValue" element={<Navigate to="/news-magzhan-kz/tag/:tagValue" />} />
+          <Route path="/news/:id" element={<Navigate to="/news-magzhan-kz/news/:id" />} />
           <Route path="/" element={<Navigate to="/news-magzhan-kz" />} />
         </Routes>
       </main>
