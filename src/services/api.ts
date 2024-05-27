@@ -2,6 +2,7 @@ import axios from "axios";
 import { UpdatedPost, Post, Comment, UpdatedComment, CardPost } from "../types";
 
 const API_URL = "https://jsonplaceholder.typicode.com";
+const public_PATH = process.env.PUBLIC_URL;
 const tags = ["Ақпарат", "Әдебиет", "Өнер", "Ғылым", "Эксклюзив", "Карьера", "Спорт", "Тарих"];
 
 export const getPosts = async (page: number, limit: number): Promise<CardPost[]> => {
@@ -77,11 +78,11 @@ function updatePost(post: Post): UpdatedPost {
   return {
     ...post,
     bodyContent: [
-      { imageLink: `/images/image_${tagId + 1}_1.jpg` },
+      { imageLink: `${public_PATH}/images/image_${tagId + 1}_1.jpg` },
       ( post.body + post.body + post.body + post.body ),
       { specialText: (post.body + post.body)},
       ( post.body + post.body + post.body + post.body ),
-      { imageLink: `/images/image_${tagId + 1}_2.jpg` },      
+      { imageLink: `${public_PATH}/images/image_${tagId + 1}_2.jpg` },      
       ( post.body + post.body + post.body + post.body )
     ],
     tag: tags[tagId],
@@ -94,7 +95,7 @@ function updateComment(comment: Comment): UpdatedComment {
   return {
     ...comment,
     date: getDate(comment),
-    avatarLink: "/icons/avatar.svg"
+    avatarLink: `${public_PATH}/icons/avatar.svg`
   };
 }
 

@@ -42,7 +42,7 @@
 }
 
 .news-list__item {
-  background-color: white;
+  background-color: var(--white);
   width: calc(100% / 3 - 16px);
   border-radius: 24px;
 }

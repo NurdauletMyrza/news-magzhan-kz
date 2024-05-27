@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import NewsList from "./pages/NewsList";
@@ -14,10 +14,11 @@ const App: React.FC = () => {
       <Header selectedTag={selectedTag} setSelectedTag={setSelectedTag} />
       <main>
         <Routes>
-          <Route path="/" element={<NewsList />} />
-          <Route path="/search/:searchValue" element={<NewsList />} />
-          <Route path="/tag/:tagValue" element={<NewsList />} />
-          <Route path="/news/:id" element={<NewsDetail />} />
+          <Route path="/news-magzhan-kz" element={<NewsList />} />
+          <Route path="/news-magzhan-kz/search/:searchValue" element={<NewsList />} />
+          <Route path="/news-magzhan-kz/tag/:tagValue" element={<NewsList />} />
+          <Route path="/news-magzhan-kz/news/:id" element={<NewsDetail />} />
+          <Route path="/" element={<Navigate to="/news-magzhan-kz" />} />
         </Routes>
       </main>
       <Footer selectedTag={selectedTag} setSelectedTag={setSelectedTag} />
