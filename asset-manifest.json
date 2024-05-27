@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/news-magzhan-kz/static/css/main.e5815a7c.css",
+    "main.js": "/news-magzhan-kz/static/js/main.0684ac4f.js",
+    "index.html": "/news-magzhan-kz/index.html",
+    "main.e5815a7c.css.map": "/news-magzhan-kz/static/css/main.e5815a7c.css.map",
+    "main.0684ac4f.js.map": "/news-magzhan-kz/static/js/main.0684ac4f.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e5815a7c.css",
+    "static/js/main.0684ac4f.js"
+  ]
+}
