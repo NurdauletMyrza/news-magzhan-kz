@@ -68,7 +68,7 @@ function litlePostUpdate(post: Post): CardPost {
     title: post.title,
     tag: tags[tagId],
     date: getDate(post),
-    imageLink: `../images/image_${tagId + 1}_1.jpg`,
+    imageLink: `${public_PATH}/images/image_${tagId + 1}_1.jpg`,
     styleVersion: 3 - x
   };
 }
@@ -98,27 +98,6 @@ function updateComment(comment: Comment): UpdatedComment {
     avatarLink: `${public_PATH}/icons/avatar.svg`
   };
 }
-
-// function getDate(objPostComment: Post | Comment): Date {
-//   if (objPostComment as Post) {
-//     return subtractDays(new Date(), objPostComment.id);
-//   } else if (objPostComment as Comment) {
-//     return addDays(subtractDays(new Date(), objPostComment.postId), objPostComment.id);
-//   }
-//   return new Date();
-
-//   function subtractDays(date: Date, days: number): Date {
-//     const result = new Date(date);
-//     result.setDate(result.getDate() - days);
-//     return result;
-//   }
-
-//   function addDays(date: Date, days: number): Date {
-//     const result = new Date(date);
-//     result.setDate(result.getDate() + days);
-//     return result;
-//   }
-// }
 
 function getDate(objPostComment: Post | Comment): Date {
   if (isPost(objPostComment)) {

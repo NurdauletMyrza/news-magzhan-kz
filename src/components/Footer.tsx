@@ -11,7 +11,7 @@ const Footer: React.FC<TagProps> = ({ selectedTag, setSelectedTag }) => {
     <footer className="footer ">
       <section className="footer__tags _container">
         {tags.map((tag) => (
-          <Link key={`tag2-${tag}`} to={`/tag/#${tag}`}>
+          <Link key={`tag2-${tag}`} to={`/news-magzhan-kz/tag/#${tag}`}>
             <span className="footer__tag">
               {tag}
             </span>

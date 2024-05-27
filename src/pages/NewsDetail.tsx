@@ -5,8 +5,8 @@ import { CardPost, UpdatedComment, UpdatedPost } from "../types";
 import "../styles/NewsDetail.css";
 import Tag from "../components/Tag";
 import UploadDate from "../components/UploadDate";
-import { Link } from "react-router-dom";
 import Card from "../components/Card";
+import ScrollToTopLink from "../components/ScrollToTopLink";
 
 const NewsDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -183,11 +183,11 @@ const NewsDetail: React.FC = () => {
         
       </article>
       <ul className="related-news-list _container">
-        {relatedPosts.map((post) => (
-          <li key={`post-${post.id}`} className="related-news-list__item">
-            <Link to={`/news/${post.id}`}>
-              <Card title={post.title} tag={post.tag} date={post.date} imageLink={post.imageLink} styleVersion={post.styleVersion} />
-            </Link>
+        {relatedPosts.map((relatedPost) => (
+          <li key={`post-${relatedPost.id}`} className="related-news-list__item">
+            <ScrollToTopLink to={`/news-magzhan-kz/news/${relatedPost.id}`}>
+              <Card title={relatedPost.title} tag={relatedPost.tag} date={relatedPost.date} imageLink={relatedPost.imageLink} styleVersion={relatedPost.styleVersion} />
+            </ScrollToTopLink>
           </li>
         ))}
       </ul>

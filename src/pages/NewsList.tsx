@@ -37,7 +37,7 @@ const NewsList: React.FC = () => {
         <div className="news-list__first-two">
           {posts.slice(0, 2).map((post) => (
             <li key={`post-${post.id}`} className={`news-list__item-${post.styleVersion}`}>
-              <Link to={`/news/${post.id}`}>
+              <Link to={`/news-magzhan-kz/news/${post.id}`}>
                 <Card title={post.title} tag={post.tag} date={post.date} imageLink={post.imageLink} styleVersion={post.styleVersion} />
               </Link>
             </li>
@@ -48,7 +48,7 @@ const NewsList: React.FC = () => {
             if (index > 1) {
               return (
                 <li key={`post-${post.id}`} className="news-list__item">
-                  <Link to={`/news/${post.id}`}>
+                  <Link to={`/news-magzhan-kz/news/${post.id}`}>
                     <Card title={post.title} tag={post.tag} date={post.date} imageLink={post.imageLink} styleVersion={post.styleVersion} />
                   </Link>
                 </li>

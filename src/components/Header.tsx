@@ -13,13 +13,13 @@ const Header: React.FC<TagProps> = ({ selectedTag, setSelectedTag }) => {
       <nav className="header__navigation navigation _container">
         <div className="navigation__head">
           <span className="navigation__quote">Мен жастарға сенемін</span>
-          <span className="navigation__logo-link"><Link to="/">Magzhan.kz</Link></span>
+          <span className="navigation__logo-link"><Link to="/news-magzhan-kz">Magzhan.kz</Link></span>
           <span className="navigation__author">Мағжан Жұмабаев</span>
         </div>
         <div className="navigation__menu">
           <ul className="navigation__tags">
             {tags.map((tag) => (
-              <Link key={`tag-${tag}`} to={`/tag/#${tag}`}>
+              <Link key={`tag-${tag}`} to={`/news-magzhan-kz/tag/#${tag}`}>
                 <li className="navigation__tag">
                   {tag}
                 </li>
