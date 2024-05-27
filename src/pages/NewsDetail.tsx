@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { getPostById, getCommentsByPostId, updatePostLikes, addComment, deleteComment } from "../services/api";
-import { UpdatedComment, UpdatedPost } from "../types";
+import { getPostById, getCommentsByPostId, updatePostLikes, addComment, deleteComment, getPosts } from "../services/api";
+import { CardPost, UpdatedComment, UpdatedPost } from "../types";
 import "../styles/NewsDetail.css";
 import Tag from "../components/Tag";
 import UploadDate from "../components/UploadDate";
+import { Link } from "react-router-dom";
+import Card from "../components/Card";
 
 const NewsDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -12,6 +14,8 @@ const NewsDetail: React.FC = () => {
   const [comments, setComments] = useState<UpdatedComment[]>([]);
   const [likes, setLikes] = useState(0);
   const [uploaderText, setUploaderText] = useState("");
+  const [relatedPosts, setRelatedPosts] = useState<CardPost[]>([]);
+  const relatedPostsLimit = 6;
 
   function likeButtonHandler() {
     if (likes === post?.likes) {
@@ -78,8 +82,14 @@ const NewsDetail: React.FC = () => {
         console.log(data);
       };
 
+      const fetchPosts = async () => {
+        const data = await getPosts(1, relatedPostsLimit);
+        setRelatedPosts(data);
+      };
+  
       fetchPost();
       fetchComments();
+      fetchPosts();
     }
   }, [id]);
 
@@ -172,7 +182,15 @@ const NewsDetail: React.FC = () => {
         </section>
         
       </article>
-      <ul className="newsnews-list _container">List Lorem ipsum dolor sit amet consectetur, adipisicing elit. Magnam esse sed exercitationem enim consequatur accusamus doloribus aut autem provident quo!</ul>
+      <ul className="related-news-list _container">
+        {relatedPosts.map((post) => (
+          <li key={`post-${post.id}`} className="related-news-list__item">
+            <Link to={`/news/${post.id}`}>
+              <Card title={post.title} tag={post.tag} date={post.date} imageLink={post.imageLink} styleVersion={post.styleVersion} />
+            </Link>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };

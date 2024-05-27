@@ -11,6 +11,11 @@ export const getPosts = async (page: number, limit: number): Promise<CardPost[]>
   return response.data.map(litlePostUpdate);
 };
 
+export const getTotalPagesNumber = async (limit: number): Promise<number> => {
+  const response = await axios.get<Post[]>(`${API_URL}/posts`);
+  return Math.ceil(response.data.length / limit);
+}
+
 export const getPostsByTag = () => {};
 
 export const getPostsBySearchTitle = () => {};
@@ -52,29 +57,34 @@ export const getTags = (): string[] => {
 
 
 function litlePostUpdate(post: Post): CardPost {
-  const number = post.id % tags.length;
+  let x = Math.floor(post.title.length / 20);
+  if (x > 2) {
+    x = 2;
+  }
+  const tagId = (post.id - 1) % tags.length;
   return {
     id: post.id,
     title: post.title,
-    tag: tags[number - 1],
+    tag: tags[tagId],
     date: getDate(post),
-    imageLink: `../images/image_${number}_1.jpg`
+    imageLink: `../images/image_${tagId + 1}_1.jpg`,
+    styleVersion: 3 - x
   };
 }
 
 function updatePost(post: Post): UpdatedPost {
-  const number = post.id % tags.length;
+  const tagId = (post.id - 1) % tags.length;
   return {
     ...post,
     bodyContent: [
-      { imageLink: `../../public/images/image_${number}_1.jpg` },
+      { imageLink: `/images/image_${tagId + 1}_1.jpg` },
       ( post.body + post.body + post.body + post.body ),
       { specialText: (post.body + post.body)},
       ( post.body + post.body + post.body + post.body ),
-      { imageLink: `../../public/images/image_${number}_2.jpg` },      
+      { imageLink: `/images/image_${tagId + 1}_2.jpg` },      
       ( post.body + post.body + post.body + post.body )
     ],
-    tag: tags[number - 1],
+    tag: tags[tagId],
     date: getDate(post),
     likes: Math.floor(Math.random() * 100)
   };
@@ -84,7 +94,7 @@ function updateComment(comment: Comment): UpdatedComment {
   return {
     ...comment,
     date: getDate(comment),
-    avatarLink: "../../public/icons/avatar.svg"
+    avatarLink: "/icons/avatar.svg"
   };
 }
 

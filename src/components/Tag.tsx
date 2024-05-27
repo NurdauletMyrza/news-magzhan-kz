@@ -10,6 +10,10 @@ const Tag: React.FC<TagProps> = ({ className, tag }) => {
   const tags = getTags();
   const number = tags.indexOf(tag) + 1;
 
+  if (number === 0) {
+    console.log(tag);
+  }
+
   return (
     <span className={`tag tag_${number} ${className}`}>{tag}</span>
   );

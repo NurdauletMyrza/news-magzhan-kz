@@ -9,6 +9,7 @@ export interface CardPost extends Omit<Post, "body" | "userId"> {
   tag: string;
   date: Date;
   imageLink: string;
+  styleVersion: number;
 }
 
 export interface UpdatedPost extends Post {

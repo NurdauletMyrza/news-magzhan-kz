@@ -1,26 +1,51 @@
 import React from "react";
-import { Link } from "react-router-dom";
-// import { UpdatedPost } from "../types";
+import "../styles/Card.css";
+import Tag from "./Tag";
+import UploadDate from "./UploadDate";
 
 interface CardProps {
-  id: number;
   title: string;
   tag: string;
   date: Date;
   imageLink: string;
+  styleVersion: number;
 }
 
-const Card: React.FC<CardProps> = ({ id, title, tag, date, imageLink}) => {
+const Card: React.FC<CardProps> = ({ title, tag, date, imageLink, styleVersion }) => {
+  if (imageLink === undefined) {
+    styleVersion = 3;
+  }
+  
+  switch (styleVersion) {
+    case 1:
+      return (
+        <div className={`card card-${styleVersion}`} style={{ backgroundImage: `url(${imageLink})`}}>
+          <div className="card__content">
+            <Tag className="card__tag" tag={tag} />
+            <h4 className="card__title">{title}</h4>
+          </div>
+          <UploadDate className="card__date" date={date} />
+        </div>
+      );
+    case 2:
+      return (
+        <div className={`card card-${styleVersion}`}>
+          <div className="card__image" style={{ backgroundImage: `url(${imageLink})`}}></div>
+          <div className="card__content">
+            <Tag className="card__tag" tag={tag} />
+            <h4 className="card__title">{title}</h4>
+          </div>
+          <UploadDate className="card__date" date={date} />
+        </div>
+      );
+  }
   return (
     <div className="card">
-      <Link to={`/news/${id}`}>
-        <div className="card-image" style={{ backgroundImage: `url(${imageLink})` }}></div>
-        <div className="card-content">
-          <h2>{title}</h2>
-          <p>{tag}</p>
-          <p>{date.toDateString()}</p>
-        </div>
-      </Link>
+      <div className="card__content">
+        <Tag className="card__tag" tag={tag} />
+        <h4 className="card__title">{title}</h4>
+      </div>
+      <UploadDate className="card__date" date={date} />
     </div>
   );
 };
