@@ -67,11 +67,11 @@ function updatePost(post: Post): UpdatedPost {
   return {
     ...post,
     bodyContent: [
-      { imageLink: `/images/image_${number}_1.jpg` },
+      { imageLink: `../../public/images/image_${number}_1.jpg` },
       ( post.body + post.body + post.body + post.body ),
       { specialText: (post.body + post.body)},
       ( post.body + post.body + post.body + post.body ),
-      { imageLink: `/images/image_${number}_2.jpg` },      
+      { imageLink: `../../public/images/image_${number}_2.jpg` },      
       ( post.body + post.body + post.body + post.body )
     ],
     tag: tags[number - 1],
@@ -84,7 +84,7 @@ function updateComment(comment: Comment): UpdatedComment {
   return {
     ...comment,
     date: getDate(comment),
-    avatarLink: "/icons/avatar.svg"
+    avatarLink: "../../public/icons/avatar.svg"
   };
 }
 
