@@ -25,6 +25,16 @@ export const updatePostLikes = async (postId: number, likes: number): Promise<vo
   console.log("post likes updated");
 };
 
+export const addComment = async (comment: UpdatedComment): Promise<void> => {
+  await axios.post(`${API_URL}/comments`, comment);
+  console.log("comment added");
+};
+
+export const deleteComment = async (commentId: number): Promise<void> => {
+  await axios.delete(`${API_URL}/comments/${commentId}`);
+  console.log("comment deleted");
+}
+
 export const getCommentsByPostId = async (postId: number): Promise<UpdatedComment[]> => {
   const response = await axios.get<Comment[]>(`${API_URL}/posts/${postId}/comments`);
   return response.data.map(updateComment);

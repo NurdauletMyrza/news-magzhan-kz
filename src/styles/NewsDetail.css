@@ -254,3 +254,57 @@
 .comment__button:hover .comment__button-icon path {
   fill: #AA2424;
 }
+
+.comments__comment-uploader {
+  margin-top: 150px;
+  margin-bottom: 150px;
+}
+
+.comment-uploader {
+  text-align: end;
+}
+
+.comment-uploader__textarea {
+  display: block;
+  size: fixed;
+  background-color: var(--bg);
+  width: 100%;
+  height: 128px;
+  border-radius: 32px;
+  padding: 24px 98px;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  resize: none;
+  margin-bottom: 16px;
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 133%;
+  color: var(--main);
+}
+
+.comment-uploader__textarea::placeholder {
+  color: #ccc;
+}
+
+.comment-uploader__button {
+  border-radius: 32px;
+  padding: 16px 120px;
+  height: 64px;
+  background-color: var(--main);
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 120%;
+  text-align: center;
+  color: var(--white);
+  margin-right: 21px;
+  transition: all 0.3s ease-in-out;
+}
+
+.comment-uploader__button:hover {
+  padding-left: 126px;
+  padding-right: 126px;
+  margin-right: 15px;
+}
