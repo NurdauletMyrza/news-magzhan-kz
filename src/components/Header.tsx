@@ -19,8 +19,7 @@ const Header: React.FC<TagProps> = ({ selectedTag, setSelectedTag }) => {
         <div className="navigation__menu">
           <ul className="navigation__tags">
             {tags.map((tag) => (
-              // <ScrollToTopLink key={`tag-${tag}`} to={`/news-magzhan-kz/tag/#${tag}`}>
-              <ScrollToTopLink key={`tag-${tag}`} to={`/news-magzhan-kz/`}>
+              <ScrollToTopLink key={`tag-${tag}`} to={`/news-magzhan-kz/tag/${tag}`}>
                 <li className="navigation__tag">
                   {tag}
                 </li>

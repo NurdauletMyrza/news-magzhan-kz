@@ -1,33 +1,53 @@
 import React, { useState, useEffect } from "react";
-import { getPosts, getTotalPagesNumber } from "../services/api";
+import { getPosts, getPostsByTag, getTotalPagesNumber, getTotalPagesNumberByTag } from "../services/api";
 import Card from "../components/Card";
 import { CardPost } from "../types";
 import "../styles/NewsList.css";
 import ScrollToTopLink from "../components/ScrollToTopLink";
+import { useParams } from "react-router-dom";
 
 const NewsList: React.FC = () => {
+  const { tag } = useParams<{ tag: string }>();
   const [posts, setPosts] = useState<CardPost[]>([]);
   const [page, setPage] = useState(1);
   const [pagesNumber, setPagesNumber] = useState(0);
   const postsLimit = 14;
 
   useEffect(() => {
-    const fetchPosts = async () => {
-      const data = await getPosts(page, postsLimit);
+    const fetchPosts = async (pageNumber: number, limit: number) => {
+      const data = await getPosts(pageNumber, limit);
       setPosts(data);
     };
 
-    fetchPosts();
-  }, [page]);
+    const fetchPostsByTag = async (tagName: string, pageNumber: number, limit: number) => {
+      const data = await getPostsByTag(tagName, pageNumber, limit);
+      setPosts(data);
+    };
+
+    if (tag === undefined) {
+      fetchPosts(page, postsLimit);
+    } else {
+      fetchPostsByTag(tag, pagesNumber, postsLimit);
+    }
+  }, [page, tag]);
 
   useEffect(() => {
-    const fetchTotalPages = async () => {
-      const totalPages = await getTotalPagesNumber(postsLimit);
+    const fetchTotalPages = async (limit: number) => {
+      const totalPages = await getTotalPagesNumber(limit);
       setPagesNumber(totalPages);
     };
 
-    fetchTotalPages();
-  }, []);
+    const fetchTotalPagesByTag = async (tagName: string, limit: number) => {
+      const totalPages = await getTotalPagesNumberByTag(tagName, limit);
+      setPagesNumber(totalPages);
+    }
+
+    if (tag === undefined) {
+      fetchTotalPages(postsLimit);
+    } else {
+      fetchTotalPagesByTag(tag, postsLimit);
+    }
+  }, [posts]);
 
   return (
     <div className="news-list-page">
@@ -42,18 +62,13 @@ const NewsList: React.FC = () => {
           ))}
         </div>
         <div className="news-list__others" style={{ maxHeight: `${120 * postsLimit}px`}}>
-          {posts.map((post, index) => {
-            if (index > 1) {
-              return (
-                <li key={`post-${post.id}`} className="news-list__item">
-                  <ScrollToTopLink to={`/news-magzhan-kz/news/${post.id}`}>
-                    <Card title={post.title} tag={post.tag} date={post.date} imageLink={post.imageLink} styleVersion={post.styleVersion} />
-                  </ScrollToTopLink>
-                </li>
-              );
-            }
-            return ;
-          })}
+          {posts.filter((post, index) => index > 1).map((post) => (
+            <li key={`post-${post.id}`} className="news-list__item">
+              <ScrollToTopLink to={`/news-magzhan-kz/news/${post.id}`}>
+                <Card title={post.title} tag={post.tag} date={post.date} imageLink={post.imageLink} styleVersion={post.styleVersion} />
+              </ScrollToTopLink>
+            </li>
+          ))}
         </div>
       </ul>
       <div className="news-list__pages">

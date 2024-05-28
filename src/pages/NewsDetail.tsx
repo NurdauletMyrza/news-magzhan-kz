@@ -164,6 +164,7 @@ const NewsDetail: React.FC = () => {
           <ul className="comments__list">
             {comments.map((comment) => (
               <Comment
+                key={`comment-${comment.id}`}
                 className="comments__item"
                 id={comment.id}
                 body={comment.body}

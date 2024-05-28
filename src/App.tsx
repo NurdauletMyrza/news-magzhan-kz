@@ -16,7 +16,7 @@ const App: React.FC = () => {
         <Routes>
           <Route path="/news-magzhan-kz" element={<NewsList />} />
           <Route path="/news-magzhan-kz/search/:searchValue" element={<NewsList />} />
-          <Route path="/news-magzhan-kz/tag/:tagValue" element={<NewsList />} />
+          <Route path="/news-magzhan-kz/tag/:tag" element={<NewsList />} />
           <Route path="/news-magzhan-kz/news/:id" element={<NewsDetail />} />
           <Route path="/" element={<Navigate to="/news-magzhan-kz" />} />
         </Routes>
