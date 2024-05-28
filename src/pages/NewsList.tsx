@@ -41,9 +41,9 @@ const NewsList: React.FC = () => {
     if (tag === undefined) {
       fetchPosts(page, postsLimit);
     } else {
-      fetchPostsByTag(tag, pagesNumber, postsLimit);
+      fetchPostsByTag(tag, page, postsLimit); // Using `page` instead of `pagesNumber` here
     }
-  }, [page, tag]);
+  }, [page, tag, postsLimit]);
 
   useEffect(() => {
     const fetchTotalPages = async (limit: number) => {
@@ -54,14 +54,14 @@ const NewsList: React.FC = () => {
     const fetchTotalPagesByTag = async (tagName: string, limit: number) => {
       const totalPages = await getTotalPagesNumberByTag(tagName, limit);
       setPagesNumber(totalPages);
-    }
+    };
 
     if (tag === undefined) {
       fetchTotalPages(postsLimit);
     } else {
       fetchTotalPagesByTag(tag, postsLimit);
     }
-  }, [posts]);
+  }, [tag, postsLimit]);
 
   return (
     <div className="news-list-page">

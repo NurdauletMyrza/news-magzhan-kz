@@ -24,9 +24,6 @@ export const getTotalPagesNumberByTag = async (tag: string, limit: number): Prom
 }
 
 export const getPostsByTag = async (tag: string, page: number, limit: number): Promise<CardPost[]> => {
-  const response = await axios.get<Post[]>(`${API_URL}/posts`, {
-    params: { _page: page, _limit: limit },
-  });
   const posts: CardPost[] = [];
   const tagsLength = tags.length;
   const tagId = tags.indexOf(tag) + 1;

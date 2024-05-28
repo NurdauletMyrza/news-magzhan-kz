@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { getTags } from "../services/api";
 import { TagProps } from "../types";
 import "../styles/Header.css";
@@ -11,15 +11,15 @@ const Header: React.FC<TagProps> = () => {
   const tags = getTags();
   const [currentTag, setCurrentTag] = useState<string | null>();
 
-  const getTagValue = () => {
+  const getTagValue = useCallback(() => {
     const match = location.pathname.match(/\/news-magzhan-kz\/tag\/([^/]+)/);
     return match ? decodeURIComponent(match[1]) : null;
-  };
+  }, [location.pathname]);
 
   useEffect(() => {
     const tagValue = getTagValue();
     setCurrentTag(tagValue);
-  }, [location]);
+  }, [getTagValue]);
 
   return (
     <header className="header">
@@ -49,8 +49,6 @@ const Header: React.FC<TagProps> = () => {
             </label>
           </div>
         </div>
-        
-        
       </nav>
     </header>
   );
