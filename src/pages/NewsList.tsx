@@ -11,19 +11,33 @@ const NewsList: React.FC = () => {
   const [posts, setPosts] = useState<CardPost[]>([]);
   const [page, setPage] = useState(1);
   const [pagesNumber, setPagesNumber] = useState(0);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const postsLimit = 14;
 
   useEffect(() => {
     const fetchPosts = async (pageNumber: number, limit: number) => {
-      const data = await getPosts(pageNumber, limit);
-      setPosts(data);
+      try {
+        const data = await getPosts(pageNumber, limit);
+        setPosts(data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      } finally {
+        setIsLoading(false);
+      }
     };
 
     const fetchPostsByTag = async (tagName: string, pageNumber: number, limit: number) => {
-      const data = await getPostsByTag(tagName, pageNumber, limit);
-      setPosts(data);
+      try {
+        const data = await getPostsByTag(tagName, pageNumber, limit);
+        setPosts(data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      } finally {
+        setIsLoading(false);
+      }
     };
 
+    setIsLoading(true);
     if (tag === undefined) {
       fetchPosts(page, postsLimit);
     } else {
@@ -51,6 +65,7 @@ const NewsList: React.FC = () => {
 
   return (
     <div className="news-list-page">
+      {isLoading && <div className="loader"></div>}
       <ul className="news-list _container">
         <div className="news-list__first-two">
           {posts.slice(0, 2).map((post) => (
@@ -71,9 +86,9 @@ const NewsList: React.FC = () => {
           ))}
         </div>
       </ul>
-      <div className="news-list__pages">
+      <div className="pages">
         {Array.from({ length: pagesNumber}).map((_, index) => (
-          <button key={`page-${index + 1}`} className={`news-list__pages-button ${page === index + 1 ? "color-red" : ""}`} onClick={() => { window.scrollTo(0, 0); setPage(index + 1) }}>{index + 1}</button>
+          <button key={`page-${index + 1}`} className={`pages__button ${page === index + 1 ? "color-red" : ""}`} onClick={() => { window.scrollTo(0, 0); setPage(index + 1) }}>{index + 1}</button>
         ))}
       </div>
     </div>

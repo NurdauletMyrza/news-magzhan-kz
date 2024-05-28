@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { getPostById, getCommentsByPostId, updatePostLikes, addComment, deleteComment, getPosts, editComment } from "../services/api";
+import { getPostById, getCommentsByPostId, updatePostLikes, addComment, deleteComment, editComment, getPostsByTag } from "../services/api";
 import { CardPost, UpdatedComment, UpdatedPost } from "../types";
 import "../styles/NewsDetail.css";
 import Tag from "../components/Tag";
@@ -102,17 +102,23 @@ const NewsDetail: React.FC = () => {
         const data = await getCommentsByPostId(parseInt(id));
         setComments(data);
       };
-
-      const fetchPosts = async () => {
-        const data = await getPosts(1, relatedPostsLimit);
-        setRelatedPosts(data);
-      };
   
       fetchPost();
       fetchComments();
-      fetchPosts();
     }
   }, [id]);
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      if (post !== null) {
+        const data = await getPostsByTag(post.tag, 1, relatedPostsLimit);
+        console.log(data);
+        setRelatedPosts(data);
+      }
+    };
+
+    fetchPosts();
+  }, [post]);
 
   return (
     <div className="news-detail-page">

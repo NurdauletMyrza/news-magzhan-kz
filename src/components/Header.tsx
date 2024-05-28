@@ -1,12 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { getTags } from "../services/api";
 import { TagProps } from "../types";
 import "../styles/Header.css";
 import ScrollToTopLink from "./ScrollToTopLink";
+import { useLocation } from "react-router-dom";
 
 
-const Header: React.FC<TagProps> = ({ selectedTag, setSelectedTag }) => {
+const Header: React.FC<TagProps> = () => {
+  const location = useLocation();
   const tags = getTags();
+  const [currentTag, setCurrentTag] = useState<string | null>();
+
+  const getTagValue = () => {
+    const match = location.pathname.match(/\/news-magzhan-kz\/tag\/([^/]+)/);
+    return match ? decodeURIComponent(match[1]) : null;
+  };
+
+  useEffect(() => {
+    const tagValue = getTagValue();
+    setCurrentTag(tagValue);
+  }, [location]);
 
   return (
     <header className="header">
@@ -20,7 +33,7 @@ const Header: React.FC<TagProps> = ({ selectedTag, setSelectedTag }) => {
           <ul className="navigation__tags">
             {tags.map((tag) => (
               <ScrollToTopLink key={`tag-${tag}`} to={`/news-magzhan-kz/tag/${tag}`}>
-                <li className="navigation__tag">
+                <li className={`navigation__tag${tag === currentTag ? " navigation__tag_active" : ""}`}>
                   {tag}
                 </li>
               </ScrollToTopLink>

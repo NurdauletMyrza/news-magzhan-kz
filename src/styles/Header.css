@@ -71,6 +71,11 @@
   color: var(--white);
 }
 
+.navigation__tag_active {
+  background-color: var(--main);
+  color: var(--white);
+}
+
 .navigation__search-bar {
   display: none;
 }

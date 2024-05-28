@@ -1,6 +1,23 @@
 .news-list-page {
+  position: relative;
   background-color: var(--bg);
   padding-top: 24px;
+}
+
+.loader {
+  position: absolute;
+  top: 0;
+  height: 4px;
+  width: 100vw;
+  --c:no-repeat linear-gradient(#6100ee 0 0);
+  background: var(--c),var(--c),#d7b8fc;
+  background-size: 60% 100%;
+  animation: l16 3s infinite;
+}
+@keyframes l16 {
+  0%   {background-position:-150% 0,-150% 0}
+  66%  {background-position: 250% 0,-150% 0}
+  100% {background-position: 250% 0, 250% 0}
 }
 
 .news-list {}
@@ -47,13 +64,13 @@
   border-radius: 24px;
 }
 
-.news-list__pages {
+.pages {
   text-align: center;
   padding-top: 64px;
   padding: 72px;
 }
 
-.news-list__pages-button {
+.pages__button {
   font-family: var(--font-family);
   font-weight: 500;
   font-size: 24px;
