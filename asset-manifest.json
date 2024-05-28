@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/news-magzhan-kz/static/css/main.b159487e.css",
-    "main.js": "/news-magzhan-kz/static/js/main.41d25c98.js",
+    "main.css": "/news-magzhan-kz/static/css/main.ea4b6c9f.css",
+    "main.js": "/news-magzhan-kz/static/js/main.b6adbe7d.js",
     "index.html": "/news-magzhan-kz/index.html",
-    "main.b159487e.css.map": "/news-magzhan-kz/static/css/main.b159487e.css.map",
-    "main.41d25c98.js.map": "/news-magzhan-kz/static/js/main.41d25c98.js.map"
+    "main.ea4b6c9f.css.map": "/news-magzhan-kz/static/css/main.ea4b6c9f.css.map",
+    "main.b6adbe7d.js.map": "/news-magzhan-kz/static/js/main.b6adbe7d.js.map"
   },
   "entrypoints": [
-    "static/css/main.b159487e.css",
-    "static/js/main.41d25c98.js"
+    "static/css/main.ea4b6c9f.css",
+    "static/js/main.b6adbe7d.js"
   ]
 }
